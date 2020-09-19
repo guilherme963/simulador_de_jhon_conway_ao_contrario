@@ -1,6 +1,6 @@
 
   var grade;
-  var colunas = 80;
+  var colunas = 135;
   var linhas = 40;
   var cor = [Math.floor(Math.random() * 256),Math.floor(Math.random() * 256),Math.floor(Math.random() * 256)]
   var cor_fundo = [Math.floor(Math.random() * 256),Math.floor(Math.random() * 256),Math.floor(Math.random() * 256)]
@@ -34,7 +34,7 @@ function gerar_aleatorio(){
 
         }
     }
-    console.table(grade) //Debug
+    
 }
 
 
@@ -50,16 +50,13 @@ function gerar_aleatorio(){
                 rect(x,y, 10,10);
 
 
-            }
-
+            } 
         }
     }
 }
 
     function verificar(X,Y){
         var redor = 0
-        //if (X ==)
-
         for(let n = -1; n < 2; n++){
             for(let s = -1; s < 2; s++){
                   try{  //Caso o valor for negativo ele pula e evita o erro
@@ -68,13 +65,13 @@ function gerar_aleatorio(){
               catch{}
             }
         }
-        if(grade[X][Y] == 1){redor = -1}
+        if(grade[X][Y] == 1){redor = redor -1}
         return(redor);
     }
 
 
-
-    function desigualdade_social(){ //Aplica as Regras Do jogo
+    function desigualdade_social(a){ //Aplica as Regras Do jogo
+        if (a == 1){return grade} 
       for (let c = 0; c < colunas; c++){
           for (let l = 0; l < linhas; l++){
             //console.log(verificar(c,l));
@@ -90,13 +87,24 @@ function gerar_aleatorio(){
         }
         return(grade_backup)}
 //for(let i; i < )
+    var v = 0
+    function proxima_gen(){ grade = desigualdade_social(v)}
 
-    function proxima_gen(){ grade = desigualdade_social()}
-
-
-
-
-
+    function bernardo(s){
+        
+        if (s == 1){
+            var tempo = setInterval(proxima_gen, 500)
+            document.getElementById("kruger").style.color = "red"
+            document.getElementById("kruger1").style.color = "black"   
+            v = 0
+        }
+        else{
+            document.getElementById("kruger1").style.color = "red"
+            document.getElementById("kruger").style.color = "black"    
+            v = 1
+        } 
+      }
+ 
 
 fazer_array()
 gerar_aleatorio()
