@@ -31,7 +31,6 @@ function gerar_aleatorio(){
             if (Math.floor(Math.random() * 100) < document.getElementById('porcentagem').value){
                 grade[x][y] = 1}
 
-
         }
     }
 }
@@ -50,7 +49,7 @@ gerar_aleatorio()
                 rect(x,y, 10,10);
 
 
-            } 
+            }
         }
     }
 }
@@ -68,9 +67,6 @@ gerar_aleatorio()
         if(grade[X][Y] == 1){redor = redor -1}
         return(redor);
     }
-
-    function verificar_estado(X,Y){return(grade[X][Y])}
-
 
     function desigualdade_social(a){ //Aplica as Regras Do jogo
         if (a == 1){return grade} 
@@ -94,6 +90,9 @@ gerar_aleatorio()
         grade_backup = fazer_array(colunas,linhas);
     }
 
+    function proxima_gen_manual(){    grade = desigualdade_social()  }
+
+
     function bernardo(s){  
         if (s == 1){
             var tempo = setInterval(proxima_gen, 500)
@@ -106,16 +105,13 @@ gerar_aleatorio()
             document.getElementById("kruger").style.color = "black"    
             v = 1
         } 
-      }
+    }
  
 function linha(){
-    grade[7][7]= 1 
-    grade[8][7]= 1 
-    grade[9][7]= 1 
-    grade[10][7]= 1 
-    grade[11][7]= 1 
-    grade[12][7]= 1 
-    grade[13][7] = 1 
+    for (let c = 20; c < 40; c++ ){
+        grade[c][20] = 1;
+        console.log(grade[c][20])
+    }
 
 
 }
