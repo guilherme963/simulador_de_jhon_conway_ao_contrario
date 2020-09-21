@@ -7,7 +7,7 @@
   var chance = 1
   var vizinhos = 0;
   var grade_backup = [];
-
+  var v = 0;
 
 function setup() {
     createCanvas(colunas * 10, linhas * 10);
@@ -34,8 +34,8 @@ function gerar_aleatorio(){
 
         }
     }
-    
 }
+gerar_aleatorio()
 
 
   function draw() {
@@ -69,29 +69,32 @@ function gerar_aleatorio(){
         return(redor);
     }
 
+    function verificar_estado(X,Y){return(grade[X][Y])}
+
 
     function desigualdade_social(a){ //Aplica as Regras Do jogo
         if (a == 1){return grade} 
       for (let c = 0; c < colunas; c++){
           for (let l = 0; l < linhas; l++){
-            //console.log(verificar(c,l));
             vizinhos = verificar(c,l);
-            try{
+            try{        
             if (vizinhos == 2){grade_backup[c][l] = grade[c][l]}
-            if (vizinhos > 3 ){grade_backup[c][l] = 0}
-            if (vizinhos < 2 ){grade_backup[c][l] = 0}
-            if (vizinhos == 3){grade_backup[c][l] = 1}
+            else if (vizinhos > 3 ){grade_backup[c][l] = 0}
+            else if (vizinhos < 2 ){grade_backup[c][l] = 0}
+            else if (vizinhos == 3){grade_backup[c][l] = 1}
           }
           catch{}
             }
         }
         return(grade_backup)}
-//for(let i; i < )
-    var v = 0
-    function proxima_gen(){ grade = desigualdade_social(v)}
 
-    function bernardo(s){
-        
+    function proxima_gen(otavio){ 
+        if( otavio == 0){v = 0}
+        grade = desigualdade_social(v);
+        grade_backup = fazer_array(colunas,linhas);
+    }
+
+    function bernardo(s){  
         if (s == 1){
             var tempo = setInterval(proxima_gen, 500)
             document.getElementById("kruger").style.color = "red"
@@ -105,6 +108,19 @@ function gerar_aleatorio(){
         } 
       }
  
+function linha(){
+    grade[7][7]= 1 
+    grade[8][7]= 1 
+    grade[9][7]= 1 
+    grade[10][7]= 1 
+    grade[11][7]= 1 
+    grade[12][7]= 1 
+    grade[13][7] = 1 
+
+
+}
+
+
 
 fazer_array()
-gerar_aleatorio()
+
